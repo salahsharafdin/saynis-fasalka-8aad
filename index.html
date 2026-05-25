@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="so">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saynis - Imtixaan MCQ</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="glass-bg"></div>
+    <div class="app-container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo">
+                <span class="pulse-dot"></span>
+                <h1>SAYNISKA FASALKA 8aad</h1>
+            </div>
+            <p class="subtitle">Baro oo isku tijaabi casharada Sayniska ee Fasalka 8aad</p>
+        </header>
+
+        <!-- PHASE SELECTION SCREEN -->
+        <main id="phase-selection-screen" class="active">
+            <h2 class="section-title">Dooro Qaybta Imtixaanka (Phase)</h2>
+            <div class="phases-grid" id="phases-list">
+                <!-- Phases cards will be loaded here dynamically by JS -->
+            </div>
+        </main>
+
+        <!-- QUIZ SCREEN -->
+        <main id="quiz-screen" class="hidden">
+            <div class="quiz-header">
+                <button id="back-btn" class="icon-btn" title="Ka bax">&larr; Dib u noqo</button>
+                <div class="quiz-meta">
+                    <span id="current-phase-name">Phase 1</span>
+                    <span id="quiz-progress-text">Su'aasha 1/10</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="question-card">
+                <p class="question-text" id="question-display">Waa maxay cudurada la is qaadsiiyo ?</p>
+                <div class="options-grid" id="options-display">
+                    <!-- 4 Shuffled Options loaded dynamically -->
+                </div>
+            </div>
+
+            <div class="quiz-footer">
+                <div class="score-display">Dhibcaha: <span id="current-score">0</span></div>
+                <button id="next-btn" class="primary-btn hidden">Su'aasha Xigta &rarr;</button>
+            </div>
+        </main>
+
+        <!-- RESULTS SCREEN -->
+        <main id="results-screen" class="hidden">
+            <div class="results-card">
+                <div class="trophy-icon">🏆</div>
+                <h2>Imtixaankii waa Dhamaaday!</h2>
+                <p id="results-phase-title">Phase 1 (Cutubka 1aad & 2aad)</p>
+
+                <div class="results-stats">
+                    <div class="stat-box">
+                        <span class="stat-val" id="total-questions-stat">0</span>
+                        <span class="stat-lbl">Su'aalaha dhan</span>
+                    </div>
+                    <div class="stat-box highlight">
+                        <span class="stat-val" id="correct-answers-stat">0</span>
+                        <span class="stat-lbl">Saxan</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val" id="score-percentage">0%</span>
+                        <span class="stat-lbl">Boqolleyda</span>
+                    </div>
+                </div>
+
+                <div class="feedback-msg" id="feedback-message">Aad u fiican!</div>
+
+                <div class="results-actions">
+                    <button id="restart-btn" class="primary-btn">Mar kale isku day</button>
+                    <button id="home-btn" class="secondary-btn">Safxada Hore</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

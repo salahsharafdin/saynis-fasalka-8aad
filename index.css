@@ -1,0 +1,587 @@
+/* Core Styling Variables */
+:root {
+    --bg-color: #0b0f19;
+    --card-bg: rgba(22, 30, 49, 0.65);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --success: #10b981;
+    --error: #ef4444;
+    --glow-color: rgba(59, 130, 246, 0.25);
+    --font-family: 'Outfit', sans-serif;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset and Layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Glassmorphism Background elements */
+.glass-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 40%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    animation: fadeInDown 0.6s ease;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #34d399;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #34d399;
+    animation: pulse 2s infinite;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+/* Screen Transitions */
+.hidden {
+    display: none !important;
+}
+
+main {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+/* Phase Grid Cards */
+.phases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.phase-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.phase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary) 0%, #34d399 100%);
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.phase-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 10px 25px var(--glow-color);
+}
+
+.phase-card:hover::before {
+    opacity: 1;
+}
+
+.phase-card .phase-num {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #60a5fa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.phase-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.phase-card .chapters-info {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.phase-card .action-hint {
+    margin-top: auto;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #34d399;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Quiz Interface */
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon-btn:hover {
+    color: var(--text-primary);
+}
+
+.quiz-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+#current-phase-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #60a5fa;
+}
+
+#quiz-progress-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary) 0%, #34d399 100%);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+/* Question Area */
+.question-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.question-text {
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+/* Option Buttons */
+.option-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.1rem 1.4rem;
+    text-align: left;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 1.05rem;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.option-btn:hover:not(.disabled) {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(59, 130, 246, 0.5);
+    transform: translateX(5px);
+}
+
+.option-badge {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.option-btn:hover:not(.disabled) .option-badge {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* Option States after click */
+.option-btn.correct {
+    background: rgba(16, 185, 129, 0.15) !important;
+    border-color: var(--success) !important;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+.option-btn.correct .option-badge {
+    background: var(--success) !important;
+    color: #fff !important;
+}
+
+.option-btn.wrong {
+    background: rgba(239, 68, 68, 0.15) !important;
+    border-color: var(--error) !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.option-btn.wrong .option-badge {
+    background: var(--error) !important;
+    color: #fff !important;
+}
+
+.option-btn.disabled {
+    cursor: not-allowed;
+}
+
+/* Buttons Styling */
+.quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.score-display {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+#current-score {
+    color: #34d399;
+    font-size: 1.2rem;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.9rem 1.75rem;
+    color: #fff;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    transition: var(--transition);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 0.9rem 1.75rem;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Results Screen */
+.results-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.trophy-icon {
+    font-size: 4rem;
+    animation: bounce 1.5s infinite alternate;
+}
+
+.results-card h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+#results-phase-title {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-top: -0.5rem;
+}
+
+.results-stats {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    min-width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    transition: var(--transition);
+}
+
+.stat-box.highlight {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.stat-val {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.stat-box.highlight .stat-val {
+    color: #34d399;
+}
+
+.stat-lbl {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.feedback-msg {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #60a5fa;
+    margin: 0.5rem 0;
+}
+
+.results-actions {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+/* Resume Card & Reset Button */
+.phase-card.resume-card {
+    border: 2px solid var(--primary) !important;
+    background: rgba(59, 130, 246, 0.1) !important;
+}
+
+.resume-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    width: 100%;
+}
+
+.reset-progress-btn {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-family);
+    z-index: 10;
+}
+
+.reset-progress-btn:hover {
+    background: rgba(239, 68, 68, 0.3);
+    color: #fff;
+    border-color: var(--error);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .app-container {
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .question-card {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .question-text {
+        font-size: 1.15rem;
+    }
+    
+    .option-btn {
+        padding: 0.9rem 1.1rem;
+        font-size: 0.95rem;
+    }
+    
+    .results-stats {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .stat-box {
+        width: 100%;
+    }
+    
+    .results-actions {
+        flex-direction: column;
+    }
+    
+    .results-actions button {
+        width: 100%;
+    }
+}
