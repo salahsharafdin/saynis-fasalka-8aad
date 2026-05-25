@@ -61,7 +61,19 @@ function clearProgress() {
 
 function checkSavedProgress() {
     const saved = localStorage.getItem('quizProgress');
-    return saved ? JSON.parse(saved) : null;
+    if (!saved) return null;
+    try {
+        const parsed = JSON.parse(saved);
+        // Clean up old saved progress from the "fill-in-the-blank" version
+        if (parsed.currentQuestions && parsed.currentQuestions.some(q => !q.options || q.options.length === 0)) {
+            localStorage.removeItem('quizProgress');
+            return null;
+        }
+        return parsed;
+    } catch (e) {
+        localStorage.removeItem('quizProgress');
+        return null;
+    }
 }
 
 function resumeQuiz(savedState) {
@@ -316,3 +328,5 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+
+

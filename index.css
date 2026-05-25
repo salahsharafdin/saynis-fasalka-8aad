@@ -543,6 +543,25 @@ main {
     box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
 }
 
+/* Footer Styling */
+.app-footer {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    line-height: 1.5;
+}
+
+.designer-credit {
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
     .app-container {
