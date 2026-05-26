@@ -287,7 +287,7 @@ function showResults() {
     if (percentage === 100) {
         feedbackMessage.textContent = "Guul Boqolkiiba Boqol ah! Aad iyo aad baad u fiicantahay! 🌟";
     } else if (percentage >= 80) {
-        feedbackMessage.textContent = "Aad u fiican! Heer sare baad gaartay! 👍";
+        feedbackMessage.textContent = "Aad u fiican! Heer sare baad gaartay ku celis yar samee! 👍";
     } else if (percentage >= 50) {
         feedbackMessage.textContent = "Dhexdhexaad! Wax yar oo ku celis ah baad u baahantahay. Keep going!";
     } else {
@@ -361,5 +361,3 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-
-

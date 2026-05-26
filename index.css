@@ -264,6 +264,7 @@ main {
     font-weight: 600;
     line-height: 1.5;
     color: var(--text-primary);
+    white-space: pre-line;
 }
 
 .options-grid {
@@ -290,6 +291,10 @@ main {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.option-text {
+    white-space: pre-line;
 }
 
 .option-btn:hover:not(.disabled) {
